@@ -139,8 +139,8 @@ if [ "$USE_PREBUILT" = true ] || [ ! -d "$CLONE_DIR" ]; then
     echo "    Extracting..."
     tar -xzf "$TMP_FILE" -C "$TMP_DIR"
 
-    # Find the binary
-    BINARY_PATH=$(find "$TMP_DIR" -type f -name "cliproxyapi-plus" -o -name "server" | head -1)
+    # Find the binary (might have different name)
+    BINARY_PATH=$(find "$TMP_DIR" -type f \( -name "cliproxyapi-plus" -o -name "cli-proxy-api-plus" -o -name "server" \) | head -1)
 
     if [ -z "$BINARY_PATH" ]; then
         echo_error "Could not find binary in extracted archive"
