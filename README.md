@@ -71,7 +71,10 @@ Think of it as a "router" for AI models - you login once to each provider via OA
 ### Option 1: One-Line Install (Recommended)
 
 ```powershell
-# Download and run the installer
+# Download and run the installer (via JSDelivr CDN - faster)
+irm https://cdn.jsdelivr.net/gh/julianromli/CLIProxyAPIPlus-Easy-Installation@main/scripts/install-cliproxyapi.ps1 | iex
+
+# Alternative (via GitHub raw)
 irm https://raw.githubusercontent.com/julianromli/CLIProxyAPIPlus-Easy-Installation/main/scripts/install-cliproxyapi.ps1 | iex
 ```
 

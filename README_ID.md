@@ -71,7 +71,10 @@ Anggap saja ini seperti "router" untuk model AI - kamu login sekali ke setiap pr
 ### Opsi 1: Install Satu Baris (Recommended)
 
 ```powershell
-# Download dan jalankan installer
+# Download dan jalankan installer (via JSDelivr CDN - lebih cepat)
+irm https://cdn.jsdelivr.net/gh/julianromli/CLIProxyAPIPlus-Easy-Installation@main/scripts/install-cliproxyapi.ps1 | iex
+
+# Alternatif (via GitHub raw)
 irm https://raw.githubusercontent.com/julianromli/CLIProxyAPIPlus-Easy-Installation/main/scripts/install-cliproxyapi.ps1 | iex
 ```
 
