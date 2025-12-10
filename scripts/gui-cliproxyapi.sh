@@ -59,22 +59,24 @@ echo_success() { echo -e "${GREEN}[+] $1${NC}"; }
 echo_warning() { echo -e "${YELLOW}[!] $1${NC}"; }
 echo_error() { echo -e "${RED}[-] $1${NC}"; }
 
-# Find GUI HTML file
-GUI_HTML=""
-if [ -f "$SCRIPT_DIR/../gui/index.html" ]; then
-    GUI_HTML="$SCRIPT_DIR/../gui/index.html"
-elif [ -f "$HOME/.local/share/cliproxyapi/gui/index.html" ]; then
-    GUI_HTML="$HOME/.local/share/cliproxyapi/gui/index.html"
-elif [ -f "/usr/share/cliproxyapi/gui/index.html" ]; then
-    GUI_HTML="/usr/share/cliproxyapi/gui/index.html"
+# Find GUI directory
+GUI_DIR=""
+if [ -d "$HOME/.local/share/cliproxyapi/gui" ] && [ -f "$HOME/.local/share/cliproxyapi/gui/index.html" ]; then
+    GUI_DIR="$HOME/.local/share/cliproxyapi/gui"
+elif [ -d "$SCRIPT_DIR/../gui" ] && [ -f "$SCRIPT_DIR/../gui/index.html" ]; then
+    GUI_DIR="$SCRIPT_DIR/../gui"
+elif [ -d "/usr/share/cliproxyapi/gui" ] && [ -f "/usr/share/cliproxyapi/gui/index.html" ]; then
+    GUI_DIR="/usr/share/cliproxyapi/gui"
 fi
 
-if [ -z "$GUI_HTML" ]; then
+if [ -z "$GUI_DIR" ]; then
     echo_error "GUI files not found"
     echo_info "Creating temporary GUI..."
 
     # Create minimal GUI
-    TMP_GUI=$(mktemp -d)/index.html
+    TMP_GUI_DIR=$(mktemp -d)
+    TMP_GUI="$TMP_GUI_DIR/index.html"
+    GUI_DIR="$TMP_GUI_DIR"
     cat > "$TMP_GUI" << 'EOFHTML'
 <!DOCTYPE html>
 <html>

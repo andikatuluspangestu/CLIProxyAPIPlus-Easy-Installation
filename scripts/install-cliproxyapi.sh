@@ -287,6 +287,17 @@ for script in start-cliproxyapi.sh cliproxyapi-oauth.sh update-cliproxyapi.sh un
     fi
 done
 
+# Copy GUI files
+GUI_INSTALL_DIR="$HOME/.local/share/cliproxyapi/gui"
+GUI_SOURCE_DIR="$(dirname "$SCRIPT_DIR")/gui"
+
+if [ -d "$GUI_SOURCE_DIR" ]; then
+    echo_step "Installing GUI Control Center..."
+    mkdir -p "$GUI_INSTALL_DIR"
+    cp -r "$GUI_SOURCE_DIR"/* "$GUI_INSTALL_DIR/"
+    echo_success "GUI installed: $GUI_INSTALL_DIR"
+fi
+
 # OAuth login prompts
 if [ "$SKIP_OAUTH" = false ]; then
     echo -e "\n${YELLOW}"
