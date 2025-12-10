@@ -287,6 +287,13 @@ for script in start-cliproxyapi.sh cliproxyapi-oauth.sh update-cliproxyapi.sh un
     fi
 done
 
+# Copy Python API server for GUI
+if [ -f "$SCRIPT_DIR/cliproxyapi-api-server.py" ]; then
+    cp "$SCRIPT_DIR/cliproxyapi-api-server.py" "$BIN_DIR/cliproxyapi-api-server"
+    chmod +x "$BIN_DIR/cliproxyapi-api-server"
+    echo_success "Installed: API server for GUI"
+fi
+
 # Copy GUI files
 GUI_INSTALL_DIR="$HOME/.local/share/cliproxyapi/gui"
 GUI_SOURCE_DIR="$(dirname "$SCRIPT_DIR")/gui"
